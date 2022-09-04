@@ -32,6 +32,12 @@ func main() {
 		os.Exit(1)
 	}
 
-	file.Write([]byte(generateRandomChar(int(args.Size.Bytes()))))
+	var i float64 = 0
+	var mbytes = args.Size.MBytes()
+
+	for ; i < mbytes; i++ {
+		file.Write([]byte(generateRandomChar(int(datasize.MB))))
+	}
+
 	file.Close()
 }
