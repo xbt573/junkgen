@@ -2,22 +2,11 @@ package main
 
 import (
 	"fmt"
-	"math/rand"
 	"os"
 
 	"github.com/alexflint/go-arg"
 	"github.com/c2h5oh/datasize"
 )
-
-func generateRandomChar(n int) string {
-	var letters = []rune("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789")
-
-	s := make([]rune, n)
-	for i := range s {
-		s[i] = letters[rand.Intn(len(letters))]
-	}
-	return string(s)
-}
 
 func main() {
 	var args struct {
@@ -36,7 +25,7 @@ func main() {
 	var mbytes = args.Size.MBytes()
 
 	for ; i < mbytes; i++ {
-		file.Write([]byte(generateRandomChar(int(datasize.MB))))
+		file.Write(make([]byte, 1048576))
 	}
 
 	file.Close()
